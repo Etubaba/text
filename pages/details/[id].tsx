@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-type ItemType = {
+type location = {
+  name: string;
+};
+
+type characterType = {
   name: string;
   image: string;
   status: string;
@@ -10,10 +14,12 @@ type ItemType = {
   species: string;
   created: string;
   gender: string;
+  location: location;
+  episodeCount: number;
 };
 
 const Details = () => {
-  const [getData, setGetData] = useState<ItemType>();
+  const [getData, setGetData] = useState<characterType>();
 
   const router = useRouter();
 
@@ -24,7 +30,7 @@ const Details = () => {
       try {
         const { data } = await axios.get(`/api/${id}`);
         if (data) {
-          setGetData(data.data[0]);
+          setGetData(data.data);
         }
       } catch (err) {
         console.log(err);
@@ -33,6 +39,8 @@ const Details = () => {
 
     getdata();
   }, []);
+
+  const charactersEpisodeCode = (arr: characterType) => {};
 
   return (
     <div>
@@ -61,6 +69,14 @@ const Details = () => {
         <div style={{ display: "flex" }}>
           <h2 style={{ marginRight: "10px" }}>Status :</h2>
           <p>{getData?.status}</p>
+        </div>
+        <div style={{ display: "flex" }}>
+          <h2 style={{ marginRight: "10px" }}>Location :</h2>
+          <p>{getData?.location.name}</p>
+        </div>
+        <div style={{ display: "flex" }}>
+          <h2 style={{ marginRight: "10px" }}>Episode Count:</h2>
+          <p>{getData?.episodeCount}</p>
         </div>
       </div>
     </div>

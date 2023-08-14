@@ -11,6 +11,7 @@ type ItemType = {
 const index = ({ data }: { data: any }) => {
   const [getData, setGetData] = useState([]);
   const [pageCount, setPageCount] = useState(25);
+  const [pageInitials, setPageInitials] = useState(0);
   useEffect(() => {
     const getdata = async () => {
       try {
@@ -27,57 +28,58 @@ const index = ({ data }: { data: any }) => {
     getdata();
   }, []);
 
-  console.log(getData);
   return (
     <div>
-      {getData.slice(0, pageCount).map((item: ItemType, idx: number) => (
-        <Link href={`/details/${item.id}`}>
-          <div
-            key={idx}
-            style={{
-              display: "flex",
-              marginBottom: "14px",
-              border: "1px",
-              borderRadius: "14px",
-            }}
-          >
-            <img
-              style={{ width: "40px", height: "40px" }}
-              alt=""
-              src={item.image}
-            />
-            <p>{item.name}</p>
-            <p>{item.status}</p>
-          </div>
-        </Link>
-      ))}
+      {getData
+        .slice(pageInitials, pageCount)
+        .map((item: ItemType, idx: number) => (
+          <Link key={idx} href={`/details/${item.id}`}>
+            <div
+              style={{
+                display: "flex",
+                marginBottom: "14px",
+                border: "1px",
+                borderRadius: "14px",
+              }}
+            >
+              <img
+                style={{ width: "40px", height: "40px" }}
+                alt=""
+                src={item.image}
+              />
+              <p>{item.name}</p>
+              <p>{item.status}</p>
+            </div>
+          </Link>
+        ))}
 
       <div>
         <p
           onClick={() => {
             if (pageCount > 25) {
               setPageCount((prev) => prev - 25);
+              setPageInitials((prev) => prev - 25);
+            }
+            if (pageInitials !== 0) {
+              setPageCount((prev) => prev - 25);
+              setPageInitials((prev) => prev - 25);
             }
           }}
         >
           Prev
         </p>
 
-        <p onClick={() => setPageCount((prev) => prev + 25)}>Next</p>
+        <p
+          onClick={() => {
+            setPageCount((prev) => prev + 25);
+            setPageInitials((prev) => prev + 25);
+          }}
+        >
+          Next
+        </p>
       </div>
     </div>
   );
 };
 
 export default index;
-
-// export const getServerSideProps = async () => {
-//   const res = await fetch(`/api/data`);
-
-//   const data = await res.json();
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// };

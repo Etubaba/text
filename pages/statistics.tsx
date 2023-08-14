@@ -20,24 +20,55 @@ const statistics = ({ data }: { data: any }) => {
     getdata();
   }, []);
 
-  const getTopXters = (data: any): string[] => {
-    let result = [""];
+  const getTopXters = (arr: { name: string }[]): string[] => {
+    const nameFrequency: Record<string, number> = {};
+    arr.forEach((obj) => {
+      const name = obj.name;
+      nameFrequency[name] = (nameFrequency[name] || 0) + 1;
+    });
 
-    for (let i = 0; i < data.length; i++) {}
+    const nameFrequencyArray = Object.entries(nameFrequency);
+    nameFrequencyArray.sort((a, b) => b[1] - a[1]);
+    const mostCommonNames = nameFrequencyArray
+      .slice(0, 3)
+      .map((pair) => pair[0]);
 
-    return result;
+    return mostCommonNames;
   };
 
-  const MostStatus = () => {};
+  function findMostCommonStatus(arr: { status: string }[]): string {
+    const statusFrequency: Record<string, number> = {};
 
+    arr.forEach((obj) => {
+      const status = obj.status;
+      statusFrequency[status] = (statusFrequency[status] || 0) + 1;
+    });
+
+    let mostCommonStatus = "";
+    let highestFrequency = 0;
+
+    for (const status in statusFrequency) {
+      if (statusFrequency[status] > highestFrequency) {
+        mostCommonStatus = status;
+        highestFrequency = statusFrequency[status];
+      }
+    }
+
+    return mostCommonStatus;
+  }
+
+  console.log(getData);
   return (
     <div>
-      <h2>Top Characters</h2>
+      <h3>Top Characters</h3>
       <ol>
         {getTopXters(getData).map((item, idx) => (
           <li key={idx}>{item}</li>
         ))}
       </ol>
+
+      <h3>Most assigned Status</h3>
+      <p>{findMostCommonStatus(getData)}</p>
     </div>
   );
 };
