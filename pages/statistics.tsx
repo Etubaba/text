@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { findLocationWithMostHumanCharacters } from "@/helpers/humanLocation";
+import { findMostCommonStatus } from "@/helpers/commonStatus";
+import { getTopXters } from "@/helpers/topCharacters";
 
 const statistics = ({ data }: { data: any }) => {
   const [getData, setGetData] = useState([]);
@@ -20,44 +23,6 @@ const statistics = ({ data }: { data: any }) => {
     getdata();
   }, []);
 
-  const getTopXters = (arr: { name: string }[]): string[] => {
-    const nameFrequency: Record<string, number> = {};
-    arr.forEach((obj) => {
-      const name = obj.name;
-      nameFrequency[name] = (nameFrequency[name] || 0) + 1;
-    });
-
-    const nameFrequencyArray = Object.entries(nameFrequency);
-    nameFrequencyArray.sort((a, b) => b[1] - a[1]);
-    const mostCommonNames = nameFrequencyArray
-      .slice(0, 3)
-      .map((pair) => pair[0]);
-
-    return mostCommonNames;
-  };
-
-  function findMostCommonStatus(arr: { status: string }[]): string {
-    const statusFrequency: Record<string, number> = {};
-
-    arr.forEach((obj) => {
-      const status = obj.status;
-      statusFrequency[status] = (statusFrequency[status] || 0) + 1;
-    });
-
-    let mostCommonStatus = "";
-    let highestFrequency = 0;
-
-    for (const status in statusFrequency) {
-      if (statusFrequency[status] > highestFrequency) {
-        mostCommonStatus = status;
-        highestFrequency = statusFrequency[status];
-      }
-    }
-
-    return mostCommonStatus;
-  }
-
-  console.log(getData);
   return (
     <div>
       <h3>Top Characters</h3>
@@ -69,6 +34,9 @@ const statistics = ({ data }: { data: any }) => {
 
       <h3>Most assigned Status</h3>
       <p>{findMostCommonStatus(getData)}</p>
+
+      <h3>The Location with the most characters of the species “human”</h3>
+      <p>{findLocationWithMostHumanCharacters(getData)}</p>
     </div>
   );
 };
