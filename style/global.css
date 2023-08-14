@@ -1,0 +1,16 @@
+
+
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.nav{
+ text-decoration: none;
+ color:#55575F;
+cursor: pointer;
+margin-right: 14px;
+}

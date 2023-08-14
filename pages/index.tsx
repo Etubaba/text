@@ -30,17 +30,41 @@ const index = ({ data }: { data: any }) => {
 
   return (
     <div>
+      <div className="header">
+        <Link
+          style={{
+            textDecoration: "none",
+            cursor: "pointer",
+            marginRight: "10px",
+          }}
+          href={"/"}
+        >
+          Home
+        </Link>
+        <Link
+          style={{
+            textDecoration: "none",
+            cursor: "pointer",
+            marginRight: "10px",
+          }}
+          href={"/statistics"}
+        >
+          Statistics
+        </Link>
+      </div>
       {getData
         .slice(pageInitials, pageCount)
         .map((item: ItemType, idx: number) => (
-          <Link key={idx} href={`/details/${item.id}`}>
-            <div
+          <div>
+            <Link
               style={{
                 display: "flex",
                 marginBottom: "14px",
                 border: "1px",
                 borderRadius: "14px",
               }}
+              key={idx}
+              href={`/details/${item.id}`}
             >
               <img
                 style={{ width: "40px", height: "40px" }}
@@ -49,8 +73,8 @@ const index = ({ data }: { data: any }) => {
               />
               <p>{item.name}</p>
               <p>{item.status}</p>
-            </div>
-          </Link>
+            </Link>
+          </div>
         ))}
 
       <div>
