@@ -3,6 +3,7 @@ import axios from "axios";
 import { findLocationWithMostHumanCharacters } from "@/helpers/humanLocation";
 import { findMostCommonStatus } from "@/helpers/commonStatus";
 import { getTopXters } from "@/helpers/topCharacters";
+import { maleSpecies } from "@/helpers/maleSpecies";
 
 const statistics = ({ data }: { data: any }) => {
   const [getData, setGetData] = useState([]);
@@ -23,6 +24,8 @@ const statistics = ({ data }: { data: any }) => {
     getdata();
   }, []);
 
+  console.log(getData);
+
   return (
     <div>
       <h3>Top Characters</h3>
@@ -37,6 +40,9 @@ const statistics = ({ data }: { data: any }) => {
 
       <h3>The Location with the most characters of the species “human”</h3>
       <p>{findLocationWithMostHumanCharacters(getData)}</p>
+
+      <h3>The species with the most male characters</h3>
+      <p>{maleSpecies(getData)}</p>
     </div>
   );
 };
