@@ -69,3 +69,34 @@
 .pagination p{
     cursor: pointer;
 }
+
+.details{
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details .character-detail{
+    border:1px  solid;
+    padding: 12px;
+    border-radius: 14px;
+    display: flex;
+}
+
+.details .character-detail img{
+    width: 14rem;
+    height: 14rem;
+    border-radius: 14px;
+    margin-right: 20px;
+}
+
+.character-item{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+
