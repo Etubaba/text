@@ -25,29 +25,6 @@ const index = ({ data }: { data: any }) => {
 
   return (
     <div>
-      <div className="header">
-        <Link
-          style={{
-            marginRight: "10px",
-            textDecoration: "none",
-            listStyle: "none",
-          }}
-          href={"/"}
-        >
-          Home
-        </Link>
-        <Link
-          style={{
-            textDecoration: "none",
-            listStyle: "none",
-            cursor: "pointer",
-          }}
-          href={"/statistics"}
-        >
-          Statistics
-        </Link>
-      </div>
-
       <section className="section">
         <div className="title">
           <p>All Characters</p>
