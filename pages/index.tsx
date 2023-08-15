@@ -52,6 +52,7 @@ const index = ({ data }: { data: any }) => {
 
           <p
             onClick={() => {
+              if (pageCount >= getData.length) return;
               setPageCount((prev) => prev + 25);
               setPageInitials((prev) => prev + 25);
             }}
