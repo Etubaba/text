@@ -58,7 +58,8 @@ const index = ({ data }: { data: any }) => {
             <Characters item={item} />
           ))}
 
-        <div>
+        <div className="pagination">
+          <div>Total Pages: {Math.ceil(getData.length / 25)} </div>
           <p
             onClick={() => {
               if (pageCount > 25) {
