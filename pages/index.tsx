@@ -7,6 +7,8 @@ const index = ({ data }: { data: any }) => {
   const [getData, setGetData] = useState([]);
   const [pageCount, setPageCount] = useState(25);
   const [pageInitials, setPageInitials] = useState(0);
+
+  console.log(pageCount, pageInitials);
   useEffect(() => {
     const getdata = async () => {
       try {
@@ -32,7 +34,7 @@ const index = ({ data }: { data: any }) => {
         {getData
           .slice(pageInitials, pageCount)
           .map((item: ItemType, idx: number) => (
-            <Characters item={item} />
+            <Characters key={idx} item={item} />
           ))}
 
         <div className="pagination">
