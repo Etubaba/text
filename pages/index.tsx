@@ -41,11 +41,7 @@ const index = ({ data }: { data: any }) => {
           <div>Total Pages: {Math.ceil(getData.length / 25)} </div>
           <p
             onClick={() => {
-              if (pageCount > 25) {
-                setPageCount((prev) => prev - 25);
-                setPageInitials((prev) => prev - 25);
-              }
-              if (pageInitials !== 0) {
+              if (pageCount > 25 && pageInitials !== 0) {
                 setPageCount((prev) => prev - 25);
                 setPageInitials((prev) => prev - 25);
               }
