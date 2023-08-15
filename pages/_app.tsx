@@ -7,24 +7,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <main>
       <div className="header">
-        <Link
-          style={{
-            marginRight: "10px",
-            textDecoration: "none",
-            listStyle: "none",
-          }}
-          href={"/"}
-        >
+        <Link className="link" href={"/"}>
           Home
         </Link>
-        <Link
-          style={{
-            textDecoration: "none",
-            listStyle: "none",
-            cursor: "pointer",
-          }}
-          href={"/statistics"}
-        >
+        <Link className="link" href={"/statistics"}>
           Statistics
         </Link>
       </div>

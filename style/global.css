@@ -15,6 +15,12 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
+.header .link{
+color: #555f55;
+margin-right: 18px;
+text-decoration: none;
+}
+
 .section{
     padding-left: 2rem;
     padding-right: 2rem;
@@ -99,4 +105,17 @@
 }
 
 
+
+.statistics{
+    padding: 20px 50px 20px 50px;
+}
+
+
+.statistics h3{
+    margin: 10px;
+}
+
+.statistics .ans{
+margin-left: 50px;
+}
 
